@@ -27,6 +27,8 @@ repositories {
 
 
 dependencies {
+	testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+	compile 'io.rest-assured:json-path:3.0.1'
 	compileOnly "org.projectlombok:lombok:1.16.10"
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
