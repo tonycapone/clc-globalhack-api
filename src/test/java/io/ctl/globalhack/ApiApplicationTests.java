@@ -1,7 +1,7 @@
 package io.ctl.globalhack;
 
-import io.ctl.globalhack.model.Provider;
-import io.ctl.globalhack.repository.ProviderRepository;
+import io.ctl.globalhack.model.Location;
+import io.ctl.globalhack.repository.LocationRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,25 +24,25 @@ public class ApiApplicationTests {
 	private TestRestTemplate restTemplate;
 
 	@Autowired
-	private ProviderRepository providerRepository;
+	private LocationRepository locationRepository;
 
 	private String shelterName = "St. Patricks";
 
-	private static Provider provider = new Provider();
+	private static Location location = new Location();
 
 	@Before
 	public void setup(){
 
-		provider.setName(shelterName);
-		provider = providerRepository.save(provider);
+		location.setName(shelterName);
+		location = locationRepository.save(location);
 	}
 
 	@Test
 	public void getShelter(){
 
-		ResponseEntity<Provider> response = restTemplate.getForEntity("/providers/" + provider.getId(), Provider.class);
+		ResponseEntity<Location> response = restTemplate.getForEntity("/providers/" + location.getId(), Location.class);
 
-		Provider shelter = new Provider();
+		Location shelter = new Location();
 		shelterName = "St. Patricks";
 		shelter.setName(shelterName);
 		assertThat(response.getBody().getName(), is(shelter.getName()) );

@@ -10,8 +10,7 @@ import org.springframework.data.annotation.Id;
 public class ProviderUser {
     @Id
     private String id;
-
     private String name;
-
-    private Provider provider;
+    private String username;
+    private Location location;
 }

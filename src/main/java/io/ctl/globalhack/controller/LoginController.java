@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by aimeemudd on 10/22/16.
  */
-@RestController()
-public class Login {
+@RestController(value = "/login")
+public class LoginController {
 
     @Autowired
     UserRepository userRepository;
@@ -22,12 +22,12 @@ public class Login {
     @Autowired
     ProviderUserRepository providerUserRepository;
 
-    @RequestMapping(name = "/provider/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/provider", method = RequestMethod.POST)
     public ProviderUser loginProvider(Credentials creds) {
         return providerUserRepository.findByUsername(creds.getUsername());
     }
 
-    @RequestMapping(name = "/user/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User loginUser(Credentials creds) {
         return userRepository.findByUsername(creds.getUsername());
     }
