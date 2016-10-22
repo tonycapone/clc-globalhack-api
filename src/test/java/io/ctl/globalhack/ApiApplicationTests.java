@@ -1,16 +1,15 @@
 package io.ctl.globalhack;
 
-import io.ctl.globalhack.model.Shelter;
+import io.ctl.globalhack.model.Provider;
+import io.ctl.globalhack.repository.ProviderRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import static io.restassured.path.json.JsonPath.given;
 import static org.hamcrest.core.Is.is;
@@ -23,23 +22,27 @@ public class ApiApplicationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
-	private String shelterName;
 
-	private static Shelter shelter = new Shelter();
+	@Autowired
+	private ProviderRepository providerRepository;
+
+	private String shelterName = "St. Patricks";
+
+	private static Provider provider = new Provider();
 
 	@Before
 	public void setup(){
-		shelter.setId(123);
-		shelter.setName(shelterName);
-		restTemplate.postForEntity("/shelter/", shelter, Shelter.class);
+
+		provider.setName(shelterName);
+		provider = providerRepository.save(provider);
 	}
 
 	@Test
 	public void getShelter(){
 
-		ResponseEntity<Shelter> response = restTemplate.getForEntity("/shelter/" + shelter.getId(), Shelter.class);
+		ResponseEntity<Provider> response = restTemplate.getForEntity("/providers/" + provider.getId(), Provider.class);
 
-		Shelter shelter = new Shelter();
+		Provider shelter = new Provider();
 		shelterName = "St. Patricks";
 		shelter.setName(shelterName);
 		assertThat(response.getBody().getName(), is(shelter.getName()) );
