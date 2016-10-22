@@ -25,22 +25,24 @@ public class ApiApplicationTests {
 	private TestRestTemplate restTemplate;
 	private String shelterName;
 
+	private static Shelter shelter = new Shelter();
+
 	@Before
 	public void setup(){
-
-		Shelter shelter = new Shelter();
+		shelter.setId(123);
 		shelter.setName(shelterName);
+		restTemplate.postForEntity("/shelter/", shelter, Shelter.class);
 	}
 
 	@Test
 	public void getShelter(){
-		int id = 1234;
-		ResponseEntity<Shelter> response = restTemplate.getForEntity("/shelter/" + id, Shelter.class);
+
+		ResponseEntity<Shelter> response = restTemplate.getForEntity("/shelter/" + shelter.getId(), Shelter.class);
 
 		Shelter shelter = new Shelter();
 		shelterName = "St. Patricks";
 		shelter.setName(shelterName);
-		assertThat(response.getBody(), is(shelter));
+		assertThat(response.getBody().getName(), is(shelter.getName()) );
 
 	}
 
