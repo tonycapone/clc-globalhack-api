@@ -90,10 +90,10 @@ public class PreseedDataService implements InitializingBean {
         client.setHistory(Arrays.asList(history));
         client.setAddictionHistory(true);
         client.setSocial(social);
-        client.setHasChildren(true);
+        client.setHasChildren(bool2);
         client.setHasDisabilities(bool1);
         client.setIsPregnant(false);
-        client.setIsVeteran(bool2);
+        client.setIsVeteran(false);
         client.setPhoneNumber(phone);
         client.setEmployed(bool3);
         client.setName(name);
