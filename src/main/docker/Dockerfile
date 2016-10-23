@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM williamyeh/java8
 VOLUME /tmp
 ADD clc-globalhack-api.jar app.jar
 RUN sh -c 'touch /app.jar'
