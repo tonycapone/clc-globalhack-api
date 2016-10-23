@@ -4,6 +4,7 @@ import io.ctl.globalhack.model.*;
 import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.client.Gender;
 import io.ctl.globalhack.model.client.History;
+import io.ctl.globalhack.model.client.Race;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import io.ctl.globalhack.repository.*;
@@ -121,7 +122,7 @@ PreseedDataService implements InitializingBean {
         providerUserRepository.save(providerUser);
     }
 
-    private void createClient(String name, Gender gender, String phone, LocalDate dob, String social, boolean bool1, boolean bool2, boolean bool3, boolean bool4){
+    private void createClient(String name, Gender gender, String phone, LocalDate dob, String social, boolean bool1, boolean bool2, boolean bool3, boolean bool4, Race race){
         Client client = new Client();
         client.setHistory(createHistory());
         client.setAddictionHistory(true);
@@ -135,6 +136,7 @@ PreseedDataService implements InitializingBean {
         client.setName(name);
         client.setGender(gender);
         client.setDob(dob);
+        client.setRace(race);
         clientRepository.save(client);
         c++;
 
@@ -157,19 +159,19 @@ PreseedDataService implements InitializingBean {
         return events;
     }
     private void createClients () {
-        createClient("Norine Neher", Gender.FEMALE,"314-555-6666", LocalDate.of(1944, 11, 12), "12345641",true, true, false,true);
-        createClient("Linnie Liming", Gender.FEMALE,"314-555-6661",LocalDate.of(2000, 01, 01),"12345642",true, true, true, true);
-        createClient("Alejandra Arizmendi", Gender.FEMALE,"314-555-6662",LocalDate.of(1978, 05, 11),"12345643",false, true, false, true);
-        createClient("Rossana Neher", Gender.FEMALE,"314-555-6663",LocalDate.of(2006, 07, 12),"12345644",true, true, false,false);
-        createClient("Catalina Casady", Gender.FEMALE,"314-555-6664",LocalDate.of(2010, 07, 12),"12345645",false, true, true, false);
-        createClient("Nadene Nestor", Gender.FEMALE,"314-555-6665",LocalDate.of(1944, 07, 12),"12345646",true, true, false,false);
-        createClient("Assunta Aoki ", Gender.FEMALE,"314-555-6667",LocalDate.of(1934, 07, 12),"12345647",true, false, false,false);
-        createClient("Arie Ash", Gender.MALE,"314-555-6668",LocalDate.of(1924, 07, 12),"12345648",false, true, false,false);
-        createClient("Norbert Norton", Gender.MALE,"314-555-6669",LocalDate.of(1954, 07, 12),"12345649",true, true, false,false);
-        createClient("Jaime Jardine", Gender.MALE,"314-555-6612",LocalDate.of(1954, 07, 12),"12345610",false, true, false,false);
-        createClient("Thanh Trueblood", Gender.MALE,"314-555-6613",LocalDate.of(1999, 07, 12),"12345611",false, false, false,false);
-        createClient("Dexter Desoto", Gender.MALE,"314-555-6614",LocalDate.of(1993, 07, 12),"12345612",false, true, false,false);
-        createClient("Aron Akey", Gender.MALE,"314-555-6617",LocalDate.of(1984, 07, 12),"12345614",false, true, true,false);
+        createClient("Norine Neher", Gender.FEMALE,"314-555-6666", LocalDate.of(1944, 11, 12), "12345641",true, true, false,true, Race.AFRICAN_AMERICAN );
+        createClient("Linnie Liming", Gender.FEMALE,"314-555-6661",LocalDate.of(2000, 01, 01),"12345642",true, true, true, true, Race.AMERICAN_INDIAN);
+        createClient("Alejandra Arizmendi", Gender.FEMALE,"314-555-6662",LocalDate.of(1978, 05, 11),"12345643",false, true, false, true, Race.CAUCASIAN);
+        createClient("Rossana Neher", Gender.FEMALE,"314-555-6663",LocalDate.of(2006, 07, 12),"12345644",true, true, false,false,Race.CAUCASIAN);
+        createClient("Catalina Casady", Gender.FEMALE,"314-555-6664",LocalDate.of(2010, 07, 12),"12345645",false, true, true, false,Race.CAUCASIAN);
+        createClient("Nadene Nestor", Gender.FEMALE,"314-555-6665",LocalDate.of(1944, 07, 12),"12345646",true, true, false,false, Race.ASIAN);
+        createClient("Assunta Aoki ", Gender.FEMALE,"314-555-6667",LocalDate.of(1934, 07, 12),"12345647",true, false, false,false, Race.OTHER);
+        createClient("Arie Ash", Gender.MALE,"314-555-6668",LocalDate.of(1924, 07, 12),"12345648",false, true, false,false, Race.HISPANIC);
+        createClient("Norbert Norton", Gender.MALE,"314-555-6669",LocalDate.of(1954, 07, 12),"12345649",true, true, false,false,Race.ASIAN);
+        createClient("Jaime Jardine", Gender.MALE,"314-555-6612",LocalDate.of(1954, 07, 12),"12345610",false, true, false,false,Race.AFRICAN_AMERICAN);
+        createClient("Thanh Trueblood", Gender.MALE,"314-555-6613",LocalDate.of(1999, 07, 12),"12345611",false, false, false,false,Race.AFRICAN_AMERICAN);
+        createClient("Dexter Desoto", Gender.MALE,"314-555-6614",LocalDate.of(1993, 07, 12),"12345612",false, true, false,false,Race.AMERICAN_INDIAN);
+        createClient("Aron Akey", Gender.MALE,"314-555-6617",LocalDate.of(1984, 07, 12),"12345614",false, true, true,false,Race.ASIAN);
 
     }
 }
