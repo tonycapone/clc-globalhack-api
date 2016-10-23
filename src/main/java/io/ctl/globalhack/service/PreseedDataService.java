@@ -5,14 +5,13 @@ import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.client.Gender;
 import io.ctl.globalhack.model.client.History;
 import io.ctl.globalhack.model.service.JobTrainingService;
-import io.ctl.globalhack.model.service.OccupancyConstraint;
+import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.repository.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 

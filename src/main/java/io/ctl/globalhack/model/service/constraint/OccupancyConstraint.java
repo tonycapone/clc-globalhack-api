@@ -1,4 +1,4 @@
-package io.ctl.globalhack.model.service;
+package io.ctl.globalhack.model.service.constraint;
 
 /**
  * Created by khomco on 10/22/16.

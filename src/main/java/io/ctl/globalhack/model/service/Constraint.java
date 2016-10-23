@@ -1,6 +1,7 @@
 package io.ctl.globalhack.model.service;
 
 import io.ctl.globalhack.model.client.Client;
+import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

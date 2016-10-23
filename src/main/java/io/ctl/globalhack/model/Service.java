@@ -2,7 +2,7 @@ package io.ctl.globalhack.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.ctl.globalhack.model.service.OccupancyConstraint;
+import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
