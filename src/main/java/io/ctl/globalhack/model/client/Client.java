@@ -20,7 +20,7 @@ public class Client {
     @JsonFormat(pattern = "MM/dd/yyyy")
     LocalDate dob;
     Gender gender;
-    String race;
+    Race race;
     String social;
     Boolean isVeteran;
     Boolean hasDisabilities;
