@@ -67,7 +67,7 @@ PreseedDataService implements InitializingBean {
         createProvider(20,10,Arrays.asList(OccupancyConstraint.ACCEPT_MEN_AND_WOMEN),"Peter & Paul","222 Peter","Peter & Paul");
         createProvider(20 ,2,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN, OccupancyConstraint.ACCEPTS_FAMILY),"Room at The Inn, St. Louis","1000 N. 19th St.","Room at The Inn");
         createProvider(18,3,Arrays.asList(OccupancyConstraint.ACCEPTS_FAMILY,OccupancyConstraint.ACCEPT_MEN_AND_WOMEN),"Loaves & Fishes Inc. St. Louis","notr listed","Loaves & Fishes Inc.");
-        createProvider(13,4,Arrays.asList(),"12th & Park Shelter","12th & Park","12th & Park Shelter");
+        createProvider(13,4,Arrays.asList(OccupancyConstraint.ACCEPT_MEN_AND_WOMEN),"12th & Park Shelter","12th & Park","12th & Park Shelter");}
 
     private void createProvider(int avail, int used,List<OccupancyConstraint> constraints,String locName, String address, String providerName){
         ShelterService service =createService(avail,used,constraints);
