@@ -1,4 +1,4 @@
-package io.ctl.globalhack.model.service;
+package io.ctl.globalhack.model.service.constraint;
 
 /**
  * Created by khomco on 10/22/16.
@@ -6,5 +6,5 @@ package io.ctl.globalhack.model.service;
 public enum OccupancyConstraint {
     ACCEPTS_FAMILY, ACCEPTS_WOMEN, ACCEPTS_MEN,
     ACCEPTS_YOUTH, ACCEPT_SEX_OFFENDER, REQUIRES_REFERRAL,
-    REQUIRES_HIV, ACCEPTS_HIV, ACCEPTS_PREGRANT, REQUIRES_SSN;
+    REQUIRES_HIV, ACCEPTS_HIV, ACCEPTS_PREGRANT, REQUIRES_SSN, ACCEPT_MEN_AND_WOMEN;
 }

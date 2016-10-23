@@ -1,7 +1,5 @@
 package io.ctl.globalhack.controller;
 
-import io.ctl.globalhack.model.Credentials;
-import io.ctl.globalhack.model.User;
 import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.service.CheckInService;
 import org.springframework.beans.factory.annotation.Autowired;

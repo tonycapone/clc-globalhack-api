@@ -1,14 +1,13 @@
 package io.ctl.globalhack;
 
-import io.ctl.globalhack.model.Location;
-import io.ctl.globalhack.repository.LocationRepository;
-import org.junit.Before;
+import io.ctl.globalhack.model.client.Client;
+import io.ctl.globalhack.model.client.Gender;
+import io.ctl.globalhack.model.service.Constraint;
+import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.path.json.JsonPath.given;
@@ -19,33 +18,45 @@ import static org.junit.Assert.assertThat;
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApiApplicationTests {
 
-
 	@Autowired
-	private TestRestTemplate restTemplate;
+	private Constraint factory;
 
-	@Autowired
-	private LocationRepository locationRepository;
+	@Test
+	public void testConstraint(){
 
-	private String shelterName = "St. Patricks";
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
 
-	private static Location location = new Location();
+		Client client = new Client();
+		client.setGender(Gender.MALE);
 
-	@Before
-	public void setup(){
+		assert(constraint.accepts(client, OccupancyConstraint.ACCEPTS_MEN));
 
-		location.setName(shelterName);
-		location = locationRepository.save(location);
 	}
 
 	@Test
-	public void getShelter(){
+	public void testConstraintGuy(){
 
-		ResponseEntity<Location> response = restTemplate.getForEntity("/providers/" + location.getId(), Location.class);
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
 
-		Location shelter = new Location();
-		shelterName = "St. Patricks";
-		shelter.setName(shelterName);
-		assertThat(response.getBody().getName(), is(shelter.getName()) );
+		Client client = new Client();
+		client.setGender(Gender.FEMALE);
+
+		assert(!constraint.accepts(client, OccupancyConstraint.ACCEPTS_MEN));
+
+	}
+
+	@Test
+	public void testConstraintGuyAgain(){
+
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
+
+		Client client = new Client();
+		client.setGender(Gender.FEMALE);
+
+		assert(constraint.accepts(client, OccupancyConstraint.ACCEPT_MEN_AND_WOMEN));
 
 	}
 

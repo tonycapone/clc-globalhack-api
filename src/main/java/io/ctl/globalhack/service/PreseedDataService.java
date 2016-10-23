@@ -1,19 +1,16 @@
 package io.ctl.globalhack.service;
 
-import com.sun.tools.javah.Gen;
-import io.ctl.globalhack.model.Location;
-import io.ctl.globalhack.model.Provider;
-import io.ctl.globalhack.model.ProviderUser;
-import io.ctl.globalhack.model.User;
+import io.ctl.globalhack.model.*;
 import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.client.Gender;
 import io.ctl.globalhack.model.client.History;
-import io.ctl.globalhack.model.service.OccupancyConstraint;
+import io.ctl.globalhack.model.service.JobTrainingService;
 import io.ctl.globalhack.model.service.ShelterService;
+import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import io.ctl.globalhack.repository.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -22,7 +19,7 @@ import java.util.List;
 /**
  * Created by khomco on 10/22/16.
  */
-@Service
+@Component
 public class PreseedDataService implements InitializingBean {
     @Autowired
     private UserRepository userRepository;
@@ -69,7 +66,12 @@ public class PreseedDataService implements InitializingBean {
         createProvider(location,providerName);
     }
 
-    private Location createLocation(ShelterService service, String name, String address) {
+
+
+
+
+    private Location createLocation(Service service, String name, String address) {
+
         Location locationData = new Location();
         locationData.setName(name);
         locationData.setAddress(address);
@@ -93,6 +95,16 @@ public class PreseedDataService implements InitializingBean {
         provider.setName(providerName);
         provider.setLocations(Arrays.asList(location));
         providerRepository.save(provider);
+    }
+
+    private ShelterService createShelterService(int availableBeds, int usedBeds) {
+        ShelterService shelterService = new ShelterService();
+        shelterService.setType("shelter");
+        shelterService.setAvailableBeds(availableBeds);
+        shelterService.setUsedBeds(usedBeds);
+        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.ACCEPTS_MEN));
+        return serviceRepository.save(shelterService);
+
     }
 
     private void createProviderUser() {

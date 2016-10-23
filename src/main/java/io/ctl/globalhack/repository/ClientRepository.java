@@ -1,6 +1,5 @@
 package io.ctl.globalhack.repository;
 
-import io.ctl.globalhack.model.Location;
 import io.ctl.globalhack.model.client.Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
