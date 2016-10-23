@@ -12,6 +12,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,8 @@ public class PreseedDataService implements InitializingBean {
 
     @Autowired
     private ClientRepository clientRepository;
-
+    int c = 0;
+    Integer i = 0;
     private void createUser() {
         User user = new User();
         user.setName("Dorothy");
@@ -64,6 +66,7 @@ public class PreseedDataService implements InitializingBean {
         ShelterService service =createService(avail,used,constraints);
         Location location = createLocation(service,locName,address);
         createProvider(location,providerName);
+        i++;
     }
 
 
@@ -117,11 +120,7 @@ public class PreseedDataService implements InitializingBean {
 
     private void createClient(String name, Gender gender, String phone, String social, boolean bool1, boolean bool2, boolean bool3){
         Client client = new Client();
-        History history = new History();
-        history.setCheckIn(new Date());
-        history.setLocationId("1234");
-        history.setService("Shelter");
-        client.setHistory(Arrays.asList(history));
+        client.setHistory(createHistory());
         client.setAddictionHistory(true);
         client.setSocial(social);
         client.setHasChildren(bool2);
@@ -133,9 +132,25 @@ public class PreseedDataService implements InitializingBean {
         client.setName(name);
         client.setGender(gender);
         clientRepository.save(client);
+        c++;
 
 
 
+    }
+
+    private List<History> createHistory() {
+        List<History> events = new ArrayList<>();
+        History event = new History();
+        event.setCheckIn(new Date());
+        event.setLocationId("1234");
+        event.setService("Shelter");
+        events.add(event);
+        History event2 = new History();
+        event2.setCheckIn(new Date());
+        event2.setLocationId("1234");
+        event2.setService("Shelter");
+        events.add(event);
+        return events;
     }
     private void createClients () {
         createClient("Norine Neher", Gender.FEMALE,"314-555-6666","12345641",true, true, false);

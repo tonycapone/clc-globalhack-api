@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class JobTrainingService extends Service {
     private String type = "job_training";
-
+    private String trainingType;
     public boolean isAvailable() {
         return true;
     }
