@@ -5,7 +5,6 @@ import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.service.Constraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.repository.LocationRepository;
-import io.ctl.globalhack.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
