@@ -12,6 +12,9 @@ public class History {
 
     String locationId;
     String service;
-    Date date;
+    Date checkIn;
+    Date checkOut;
+    int rating;
+    String feedback;
 
 }
