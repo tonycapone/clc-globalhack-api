@@ -55,7 +55,7 @@ public class PreseedDataService implements InitializingBean {
     private void createProviders() {
         createProvider(20,10,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN),"Normandy Location","111 Normandy St.","St. Patrick's Center");
         createProvider(174,54,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN, OccupancyConstraint.ACCEPTS_FAMILY),"St. Louis Location","1000 N. 19th St.","Gateway 180");
-        createProvider(18,3,Arrays.asList(OccupancyConstraint.ACCEPTS_FAMILY,OccupancyConstraint.ACCEPTS_PREGRANT),"St. Louis Location","4223 S. Compton","Our Lady's Inn");
+        createProvider(18,3,Arrays.asList(OccupancyConstraint.ACCEPTS_FAMILY,OccupancyConstraint.ACCEPTS_PREGNANT),"St. Louis Location","4223 S. Compton","Our Lady's Inn");
         createProvider(20,20,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN),"St. Louis Location","123 Normandy St.","St. Patrick's Center");
         createProvider(74,59,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN, OccupancyConstraint.ACCEPTS_MEN),"St. Louis Location","unlisted","Salvation Army Family Haven");
         createProvider(4,2,Arrays.asList(OccupancyConstraint.ACCEPTS_MEN),"St. Louis Location","unlisted","Chestnut Health Systems");
