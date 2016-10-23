@@ -16,7 +16,7 @@ import static io.ctl.globalhack.model.service.constraint.OccupancyConstraint.ACC
  * Created by khomco on 10/22/16.
  */
 @Component
-public class GenderConstraint extends Constraint {
+public class GenderConstraint implements Constraint {
 
     private List<OccupancyConstraint> acceptedConstraints =
             Arrays.asList(ACCEPTS_MEN, ACCEPTS_WOMEN, ACCEPT_MEN_AND_WOMEN);
@@ -33,7 +33,7 @@ public class GenderConstraint extends Constraint {
     }
 
     @Override
-    protected boolean canHandle(OccupancyConstraint occupancyConstraint) {
+    public boolean canHandle(OccupancyConstraint occupancyConstraint) {
         return acceptedConstraints.contains(occupancyConstraint);
     }
 }

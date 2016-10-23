@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 public interface ClientRepository extends CrudRepository<Client, String> {
 
     @RestResource(path = "nameStartsWith", rel = "nameStartsWith")
-    Page findByNameStartsWithIgnoreCase(@Param("name") String name, Pageable p);
+    Page<Client> findByNameStartsWithIgnoreCase(@Param("name") String name, Pageable p);
 
     Client findByName(String name);
 
