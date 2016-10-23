@@ -11,7 +11,7 @@ import java.util.Date;
 public class History {
 
     String locationId;
-    String activity;
+    String service;
     Date date;
 
 }

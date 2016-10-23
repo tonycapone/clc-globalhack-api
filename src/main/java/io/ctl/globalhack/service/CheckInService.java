@@ -7,5 +7,5 @@ import io.ctl.globalhack.model.client.Client;
  */
 public interface CheckInService {
 
-    public void checkIn(Client client, String id);
+    void checkIn(Client client, String id);
 }

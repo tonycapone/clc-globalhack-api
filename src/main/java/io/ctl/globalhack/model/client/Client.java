@@ -12,9 +12,7 @@ import java.util.List;
 public class Client {
     @Id
     String id;
-    String firstName;
-    String lastName;
-    String middleName;
+    String name;
     Gender gender;
     String race;
     String social;
@@ -24,6 +22,7 @@ public class Client {
     Boolean hasChildren;
     Boolean isPregnant;
     Boolean employed;
+    String phoneNumber;
     List<History> history;
 
 
