@@ -49,7 +49,7 @@ public class PreseedDataService implements InitializingBean {
         shelterService.setType("shelter");
         shelterService.setAvailableBeds(100);
         shelterService.setUsedBeds(48);
-        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.MEN));
+       // shelterService.setConstraints(Arrays.asList(OccupancyConstraint.MEN));
         ShelterService service = serviceRepository.save(shelterService);
 
         Location locationData = new Location();

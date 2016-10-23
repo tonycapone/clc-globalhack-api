@@ -3,6 +3,8 @@ package io.ctl.globalhack.model.client;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 /**
  * Created by aimeemudd on 10/22/16.
  */
@@ -22,6 +24,7 @@ public class Client {
     Boolean hasChildren;
     Boolean isPregnant;
     Boolean employed;
+    List<History> history;
 
 
 
