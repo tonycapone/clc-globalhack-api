@@ -15,6 +15,9 @@ public interface ClientRepository extends CrudRepository<Client, String> {
     @RestResource(path = "nameStartsWith", rel = "nameStartsWith")
     Page<Client> findByNameStartsWithIgnoreCase(@Param("name") String name, Pageable p);
 
+    @RestResource(path = "phoneNumber", rel = "phoneNumber")
+    Client findByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+
     Client findByName(String name);
 
     Client findBySocial(String social);
