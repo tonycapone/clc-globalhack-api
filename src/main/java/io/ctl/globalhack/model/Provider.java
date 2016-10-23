@@ -13,8 +13,8 @@ import java.util.List;
 public class Provider {
     @Id
     private String id;
-
     private String name;
+
     @DBRef
     private List<Location> locations;
 }

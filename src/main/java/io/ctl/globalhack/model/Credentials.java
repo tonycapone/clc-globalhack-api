@@ -7,7 +7,6 @@ import lombok.Data;
  */
 @Data
 public class Credentials {
-
-    String username;
-    String password;
+    private String username;
+    private String password;
 }

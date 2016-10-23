@@ -33,9 +33,10 @@ repositories {
 
 dependencies {
 	//change back compile to testCompile)
+	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 	compile 'io.rest-assured:json-path:3.0.1'
-	compileOnly "org.projectlombok:lombok:1.16.10"
+	compile "org.projectlombok:lombok:1.16.10"
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile ('com.twilio.sdk:twilio-java-sdk:7.0.0-rc-10')
@@ -47,7 +48,7 @@ docker {
 }
 
 task buildDocker(type: Docker, dependsOn: build) {
-	push = false
+	push = true
 	applicationName = jar.baseName
 	tagVersion = 'latest'
 	dockerfile = file('src/main/docker/Dockerfile')
