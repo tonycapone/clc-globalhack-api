@@ -3,6 +3,9 @@ package io.ctl.globalhack.model.client;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +16,7 @@ public class Client {
     @Id
     String id;
     String name;
+    LocalDate dob;
     Gender gender;
     String race;
     String social;

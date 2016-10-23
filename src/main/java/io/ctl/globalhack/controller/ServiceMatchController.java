@@ -4,8 +4,10 @@ import io.ctl.globalhack.model.Location;
 import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.service.Constraint;
 import io.ctl.globalhack.model.service.ShelterService;
+import io.ctl.globalhack.model.service.constraint.ConstraintFactory;
 import io.ctl.globalhack.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +28,8 @@ public class ServiceMatchController {
     private LocationRepository locationRepository;
 
     @Autowired
-    private Constraint constraintFactory;
+    @Qualifier("factory")
+    private ConstraintFactory constraintFactory;
 
     @RequestMapping(value = "/match", method = RequestMethod.POST)
     public List<Location> findServiceMatch(@RequestBody Client client) {
