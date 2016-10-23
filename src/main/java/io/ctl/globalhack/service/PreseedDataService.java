@@ -47,7 +47,7 @@ public class PreseedDataService implements InitializingBean {
         createProviderUser();
 
         createProviders();
-        createClient();
+        createClients();
     }
 
     private void createProviders() {
