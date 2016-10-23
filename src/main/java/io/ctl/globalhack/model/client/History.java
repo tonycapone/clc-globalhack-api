@@ -1,5 +1,6 @@
 package io.ctl.globalhack.model.client;
 
+import io.ctl.globalhack.model.Service;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,5 +17,6 @@ public class History {
     Date checkOut;
     int rating;
     String feedback;
+    Service services;
 
 }

@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Service
 @Log4j
-public class CheckInServiceImpl implements CheckInService {
+public class ProviderServiceImpl implements ProviderService {
 
     @Autowired
     ServiceRepository serviceRepository;
@@ -40,6 +40,11 @@ public class CheckInServiceImpl implements CheckInService {
         clientRepository.save(client);
 
 
+
+    }
+
+    @Override
+    public void registerService(String id, io.ctl.globalhack.model.Service service) {
 
     }
 

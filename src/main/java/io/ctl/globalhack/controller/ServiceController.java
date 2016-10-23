@@ -1,7 +1,8 @@
 package io.ctl.globalhack.controller;
 
+import io.ctl.globalhack.model.Service;
 import io.ctl.globalhack.model.client.Client;
-import io.ctl.globalhack.service.CheckInService;
+import io.ctl.globalhack.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,15 +11,22 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping
-public class CheckInController {
+public class ServiceController {
 
     @Autowired
-    CheckInService checkInService;
+    ProviderService providerService;
+
 
     @RequestMapping(value = "{shelterId}/checkin", method = RequestMethod.POST)
     public void checkIn (@RequestBody Client client, @PathVariable String shelterId) {
         System.out.println(shelterId);
-        checkInService.checkIn(client,shelterId);
+        providerService.checkIn(client,shelterId);
+
+    }
+
+    @RequestMapping(value = "{clientId}/register", method = RequestMethod.POST)
+    public void addService (@RequestBody Service service, @PathVariable String clientId) {
+
 
     }
 }
