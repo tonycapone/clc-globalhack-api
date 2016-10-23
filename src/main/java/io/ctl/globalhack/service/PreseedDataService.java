@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by khomco on 10/22/16.
@@ -54,26 +55,45 @@ public class PreseedDataService implements InitializingBean {
     }
 
     private void createProviders() {
-        ShelterService shelterService = new ShelterService();
-        shelterService.setType("shelter");
-        shelterService.setAvailableBeds(100);
-        shelterService.setUsedBeds(48);
-        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.ACCEPTS_MEN));
-        ShelterService service = serviceRepository.save(shelterService);
+        createProvider(20,10,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN),"Normandy Location","111 Normandy St.","St. Patrick's Center");
+        createProvider(174,54,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN, OccupancyConstraint.ACCEPTS_FAMILY),"St. Louis Location","1000 N. 19th St.","Gateway 180");
+        createProvider(18,3,Arrays.asList(OccupancyConstraint.ACCEPTS_FAMILY,OccupancyConstraint.ACCEPTS_PREGRANT),"St. Louis Location","4223 S. Compton","Our Lady's Inn");
+        createProvider(20,20,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN),"St. Louis Location","123 Normandy St.","St. Patrick's Center");
+        createProvider(74,59,Arrays.asList(OccupancyConstraint.ACCEPTS_WOMEN, OccupancyConstraint.ACCEPTS_MEN),"St. Louis Location","unlisted","Salvation Army Family Haven");
+        createProvider(4,2,Arrays.asList(OccupancyConstraint.ACCEPTS_MEN),"St. Louis Location","unlisted","Chestnut Health Systems");
+    }
 
+    private void createProvider(int avail, int used,List<OccupancyConstraint> constraints,String locName, String address, String providerName){
+        ShelterService service =createService(avail,used,constraints);
+        Location location = createLocation(service,locName,address);
+        createProvider(location,providerName);
+    }
+
+    private Location createLocation(ShelterService service, String name, String address) {
         Location locationData = new Location();
-        locationData.setName("Normandy Location");
-        locationData.setAddress("111 Normandy St.");
+        locationData.setName(name);
+        locationData.setAddress(address);
         locationData.setServices(Arrays.asList(service));
         Location location = locationRepository.save(locationData);
+        return  location;
+    }
+    private ShelterService createService(int avail, int used,List<OccupancyConstraint> constraints){
+        ShelterService shelterService = new ShelterService();
+        shelterService.setType("shelter");
+        shelterService.setAvailableBeds(avail);
+        shelterService.setUsedBeds(used);
+        shelterService.setConstraints(constraints);
+        ShelterService service = serviceRepository.save(shelterService);
+        return service;
 
+    }
+
+    private void createProvider(Location location, String providerName){
         Provider provider = new Provider();
-        provider.setName("St. Patrick's Center");
+        provider.setName(providerName);
         provider.setLocations(Arrays.asList(location));
         providerRepository.save(provider);
     }
-
-    private void
 
     private void createProviderUser() {
         ProviderUser providerUser = new ProviderUser();
