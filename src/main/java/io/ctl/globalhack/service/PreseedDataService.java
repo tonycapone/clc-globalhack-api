@@ -84,7 +84,7 @@ public class PreseedDataService implements InitializingBean {
     private void createClient(String name, Gender gender, String phone, String social, boolean bool1, boolean bool2, boolean bool3){
         Client client = new Client();
         History history = new History();
-        history.setDate(new Date());
+        history.setCheckIn(new Date());
         history.setLocationId("1234");
         history.setService("Shelter");
         client.setHistory(Arrays.asList(history));
