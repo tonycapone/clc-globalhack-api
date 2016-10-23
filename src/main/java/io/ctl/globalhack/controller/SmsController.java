@@ -24,16 +24,17 @@ import java.util.List;
 /**
  * Created by aimeemudd on 10/22/16.
  */
-@RestController(value = "/sms")
+@RestController
+@RequestMapping("/sms")
 public class SmsController {
 
     @Autowired
     ServiceRepository serviceRepository;
 
     @RequestMapping(value = "/provider", method = RequestMethod.POST)
-    public String getBeds(Request  req) {
+    public String getBeds(String req) {
+
         String message="Unable to process your request";
-        req.getUsername();
         if (req.equals("shelter")) {
             message= serviceRepository.findOne("").getId();
         }
