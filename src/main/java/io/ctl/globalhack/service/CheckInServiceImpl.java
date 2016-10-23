@@ -35,7 +35,7 @@ public class CheckInServiceImpl implements CheckInService {
         History history = new History();
         history.setService("Shelter");
         history.setLocationId(id);
-        history.setDate(new Date());
+        history.setCheckIn(new Date());
         client.getHistory().add(history);
         clientRepository.save(client);
 
