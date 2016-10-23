@@ -1,5 +1,6 @@
 package io.ctl.globalhack.model.client;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -16,6 +17,7 @@ public class Client {
     @Id
     String id;
     String name;
+    @JsonFormat(pattern = "MM/dd/yyyy")
     LocalDate dob;
     Gender gender;
     String race;

@@ -33,6 +33,7 @@ repositories {
 
 dependencies {
 	//change back compile to testCompile)
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 	compile 'io.rest-assured:json-path:3.0.1'
