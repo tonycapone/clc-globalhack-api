@@ -2,9 +2,12 @@ package io.ctl.globalhack.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.ctl.globalhack.model.service.OccupancyConstraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 /**
  * Created by khomco on 10/22/16.
@@ -22,4 +25,6 @@ public abstract class Service {
     private String id;
 
     boolean isAvailable;
+    private List<OccupancyConstraint> constraints;
+
 }

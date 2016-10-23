@@ -1,6 +1,8 @@
 package io.ctl.globalhack;
 
 import io.ctl.globalhack.model.Location;
+import io.ctl.globalhack.model.client.Client;
+import io.ctl.globalhack.model.client.Gender;
 import io.ctl.globalhack.model.service.Constraint;
 import io.ctl.globalhack.model.service.OccupancyConstraint;
 import io.ctl.globalhack.repository.LocationRepository;
@@ -21,14 +23,45 @@ import static org.junit.Assert.assertThat;
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApiApplicationTests {
 
-
+	@Autowired
+	private Constraint factory;
 
 	@Test
 	public void testConstraint(){
 
-		Constraint constraint = Constraint.from(OccupancyConstraint.ACCEPTS_MEN);
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
 
-		constraint.
+		Client client = new Client();
+		client.setGender(Gender.MALE);
+
+		assert(constraint.accepts(client, OccupancyConstraint.ACCEPTS_MEN));
+
+	}
+
+	@Test
+	public void testConstraintGuy(){
+
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
+
+		Client client = new Client();
+		client.setGender(Gender.FEMALE);
+
+		assert(!constraint.accepts(client, OccupancyConstraint.ACCEPTS_MEN));
+
+	}
+
+	@Test
+	public void testConstraintGuyAgain(){
+
+		OccupancyConstraint acceptsMen = OccupancyConstraint.ACCEPTS_MEN;
+		Constraint constraint = factory.from(acceptsMen);
+
+		Client client = new Client();
+		client.setGender(Gender.FEMALE);
+
+		assert(constraint.accepts(client, OccupancyConstraint.ACCEPT_MEN_AND_WOMEN));
 
 	}
 

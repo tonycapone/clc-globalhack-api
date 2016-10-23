@@ -1,6 +1,9 @@
 package io.ctl.globalhack.service;
 
 import io.ctl.globalhack.model.*;
+import io.ctl.globalhack.model.client.Client;
+import io.ctl.globalhack.model.client.Gender;
+import io.ctl.globalhack.model.client.History;
 import io.ctl.globalhack.model.service.JobTrainingService;
 import io.ctl.globalhack.model.service.OccupancyConstraint;
 import io.ctl.globalhack.model.service.ShelterService;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by khomco on 10/22/16.
@@ -27,6 +31,8 @@ public class PreseedDataService implements InitializingBean {
     private LocationRepository locationRepository;
     @Autowired
     private ServiceRepository serviceRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     private void createUser() {
         User user = new User();
@@ -48,7 +54,7 @@ public class PreseedDataService implements InitializingBean {
         shelterService.setType("shelter");
         shelterService.setAvailableBeds(100);
         shelterService.setUsedBeds(48);
-        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.MEN));
+        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.ACCEPTS_MEN));
         ShelterService service = serviceRepository.save(shelterService);
 
         ShelterService service1 = createShelterService(100, 100);

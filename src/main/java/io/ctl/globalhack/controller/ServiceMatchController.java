@@ -2,6 +2,7 @@ package io.ctl.globalhack.controller;
 
 import io.ctl.globalhack.model.Location;
 import io.ctl.globalhack.model.client.Client;
+import io.ctl.globalhack.model.service.Constraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.repository.LocationRepository;
 import io.ctl.globalhack.repository.ServiceRepository;
@@ -23,10 +24,10 @@ import java.util.stream.StreamSupport;
 public class ServiceMatchController {
 
     @Autowired
-    private ServiceRepository serviceRepository;
+    private LocationRepository locationRepository;
 
     @Autowired
-    private LocationRepository locationRepository;
+    private Constraint constraintFactory;
 
     @RequestMapping(value = "/match", method = RequestMethod.POST)
     public List<Location> findServiceMatch(@RequestBody Client client) {
@@ -35,6 +36,10 @@ public class ServiceMatchController {
                 .flatMap(location -> location.getServices().stream().collect(Collectors.toMap(service -> location, service -> service)).entrySet().stream())
                 .filter(locationServiceEntry -> locationServiceEntry.getValue() instanceof ShelterService)
                 .filter(locationServiceEntry -> locationServiceEntry.getValue().isAvailable())
+                .filter(locationServiceEntry ->
+                        locationServiceEntry.getValue().getConstraints().stream()
+                                .allMatch(occupancyConstraint ->
+                                        constraintFactory.from(occupancyConstraint).accepts(client, occupancyConstraint)))
                 .map(locationServiceEntry -> locationServiceEntry.getKey())
 
 

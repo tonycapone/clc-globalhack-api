@@ -13,14 +13,14 @@ import java.util.List;
 public abstract class Constraint {
 
     @Autowired
-    static List<Constraint> availableConstraints;
+    List<Constraint> availableConstraints;
 
 
     public abstract boolean accepts(Client client, OccupancyConstraint constraint);
 
     abstract protected boolean canHandle(OccupancyConstraint occupancyConstraint);
 
-    public static Constraint from(OccupancyConstraint occupancyConstraint) {
+    public Constraint from(OccupancyConstraint occupancyConstraint) {
        return availableConstraints.stream().filter(constraint ->
                constraint.canHandle(occupancyConstraint)).
                findFirst().orElseThrow(() -> new RuntimeException("No matching handler for occupancy constraint " + occupancyConstraint));
