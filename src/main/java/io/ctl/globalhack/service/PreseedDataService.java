@@ -4,7 +4,6 @@ import io.ctl.globalhack.model.*;
 import io.ctl.globalhack.model.client.Client;
 import io.ctl.globalhack.model.client.Gender;
 import io.ctl.globalhack.model.client.History;
-import io.ctl.globalhack.model.service.JobTrainingService;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.model.service.constraint.OccupancyConstraint;
 import io.ctl.globalhack.repository.*;
@@ -24,7 +23,8 @@ import java.util.List;
  * Created by khomco on 10/22/16.
  */
 @Component
-public class PreseedDataService implements InitializingBean {
+public class
+PreseedDataService implements InitializingBean {
     @Autowired
     private UserRepository userRepository;
     @Autowired
