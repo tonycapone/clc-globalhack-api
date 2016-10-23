@@ -21,4 +21,5 @@ public abstract class Service {
     @Id
     private String id;
 
+    boolean isAvailable;
 }

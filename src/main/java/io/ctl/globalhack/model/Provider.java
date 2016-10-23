@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,5 +17,10 @@ public class Provider {
     private String name;
 
     @DBRef
-    private List<Location> locations;
+    private List<Location> locations = new ArrayList<>();
+
+
+    public void addLocation(Location location) {
+        locations.add(location);
+    }
 }

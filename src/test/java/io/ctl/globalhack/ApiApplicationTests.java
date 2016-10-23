@@ -1,6 +1,8 @@
 package io.ctl.globalhack;
 
 import io.ctl.globalhack.model.Location;
+import io.ctl.globalhack.model.service.Constraint;
+import io.ctl.globalhack.model.service.OccupancyConstraint;
 import io.ctl.globalhack.repository.LocationRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,32 +22,13 @@ import static org.junit.Assert.assertThat;
 public class ApiApplicationTests {
 
 
-	@Autowired
-	private TestRestTemplate restTemplate;
-
-	@Autowired
-	private LocationRepository locationRepository;
-
-	private String shelterName = "St. Patricks";
-
-	private static Location location = new Location();
-
-	@Before
-	public void setup(){
-
-		location.setName(shelterName);
-		location = locationRepository.save(location);
-	}
 
 	@Test
-	public void getShelter(){
+	public void testConstraint(){
 
-		ResponseEntity<Location> response = restTemplate.getForEntity("/providers/" + location.getId(), Location.class);
+		Constraint constraint = Constraint.from(OccupancyConstraint.ACCEPTS_MEN);
 
-		Location shelter = new Location();
-		shelterName = "St. Patricks";
-		shelter.setName(shelterName);
-		assertThat(response.getBody().getName(), is(shelter.getName()) );
+		constraint.
 
 	}
 

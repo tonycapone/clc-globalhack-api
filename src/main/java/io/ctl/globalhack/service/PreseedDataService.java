@@ -1,26 +1,21 @@
 package io.ctl.globalhack.service;
 
-import io.ctl.globalhack.model.Location;
-import io.ctl.globalhack.model.Provider;
-import io.ctl.globalhack.model.ProviderUser;
-import io.ctl.globalhack.model.User;
-import io.ctl.globalhack.model.client.Client;
-import io.ctl.globalhack.model.client.Gender;
-import io.ctl.globalhack.model.client.History;
+import io.ctl.globalhack.model.*;
+import io.ctl.globalhack.model.service.JobTrainingService;
 import io.ctl.globalhack.model.service.OccupancyConstraint;
 import io.ctl.globalhack.model.service.ShelterService;
 import io.ctl.globalhack.repository.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Created by khomco on 10/22/16.
  */
-@Service
+@Component
 public class PreseedDataService implements InitializingBean {
     @Autowired
     private UserRepository userRepository;
@@ -32,9 +27,6 @@ public class PreseedDataService implements InitializingBean {
     private LocationRepository locationRepository;
     @Autowired
     private ServiceRepository serviceRepository;
-
-    @Autowired
-    private ClientRepository clientRepository;
 
     private void createUser() {
         User user = new User();
@@ -49,7 +41,6 @@ public class PreseedDataService implements InitializingBean {
         createProviderUser();
 
         createProviders();
-        createClient();
     }
 
     private void createProviders() {
@@ -57,19 +48,41 @@ public class PreseedDataService implements InitializingBean {
         shelterService.setType("shelter");
         shelterService.setAvailableBeds(100);
         shelterService.setUsedBeds(48);
-        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.ACCEPTS_MEN));
+        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.MEN));
         ShelterService service = serviceRepository.save(shelterService);
 
-        Location locationData = new Location();
-        locationData.setName("Normandy Location");
-        locationData.setAddress("111 Normandy St.");
-        locationData.setServices(Arrays.asList(service));
-        Location location = locationRepository.save(locationData);
+        ShelterService service1 = createShelterService(100, 100);
+        Location location1 = createLocation(service1, "Poplar Bluff", "111 Bluff St.");
 
+        JobTrainingService jobTrainingService = new JobTrainingService();
+        Location twizzLocation = createLocation(jobTrainingService, "Twizzler Location", "Red String Ave");
+        Provider provider = createProvider(location1, "Midtown Shabby");
+        provider.addLocation(twizzLocation);
+
+    }
+
+    private Provider createProvider(Location location, String name) {
         Provider provider = new Provider();
-        provider.setName("St. Patrick's Center");
-        provider.setLocations(Arrays.asList(location));
-        providerRepository.save(provider);
+        provider.setName(name);
+        provider.addLocation(location);
+        return providerRepository.save(provider);
+    }
+
+    private Location createLocation(Service service, String name, String address) {
+        Location locationData = new Location();
+        locationData.setName(name);
+        locationData.setAddress(address);
+        locationData.setServices(Arrays.asList(service));
+        return locationRepository.save(locationData);
+    }
+
+    private ShelterService createShelterService(int availableBeds, int usedBeds) {
+        ShelterService shelterService = new ShelterService();
+        shelterService.setType("shelter");
+        shelterService.setAvailableBeds(availableBeds);
+        shelterService.setUsedBeds(usedBeds);
+        shelterService.setConstraints(Arrays.asList(OccupancyConstraint.ACCEPTS_MEN));
+        return serviceRepository.save(shelterService);
     }
 
     private void createProviderUser() {
