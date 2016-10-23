@@ -13,6 +13,5 @@ public class ShelterService extends Service {
     private String type = "shelter";
     private int availableBeds;
     private int usedBeds;
-
     private List<OccupancyConstraint> constraints;
 }
