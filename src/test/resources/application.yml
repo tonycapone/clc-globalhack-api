@@ -2,3 +2,5 @@ spring:
     data:
        mongodb:
            port: 0
+    mvc:
+      dispatch-options-request: true
